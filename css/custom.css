@@ -1,0 +1,9 @@
+img {
+  height: 50vh;
+}
+
+.plain-image {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}

@@ -1,5 +1,8 @@
 node_modules/
 
+# Mac Stuff
+.DS_Store
+
 # sass stuff
 .sass-cache/
 *.css.map

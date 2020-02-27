@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Front End State Management</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,8 +26,205 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!-- Intro -->
+				<section>Hello! 👋<br> Welcome to Fayetteville.js 🤠 </section>
+				<section>
+					<div>The name's Joey 🥴😻</div>
+					<img src="img/catfe.jpg" alt="">
+				</section>
+				<section>Front End<br>State Management</section>
+
+				<!-- What? Basic Definition -->
+				<section><img class="plain-image" src="img/think.png" alt=""> <div>What is that?</div></section>
+				<section>
+					<div>In a 🥜🐚:</div>
+					<div>State management is a reactive database for your frontend</div>
+				</section>
+
+				<!-- WTF? -->
+				<section><img src="img/confused_man.jpg" alt=""><div>State in my <em>front end?</em></div></section>
+				<section><img src="img/server_man_1.jpg" alt=""></section>
+				<section><img src="img/I_have_pg.jpg" alt=""></section>
+				<section><em>"Has JavaScript gone too far?!"</em></section>
+				<section>Yes</section>
+
+				<!-- Settle down, we'll explain it -->
+				<section>There's a few reasons...</section>
+
+				<!-- Example 1: static data -->
+				<section><h3>1. A clean way to store static data</h3></section>
+				<section>
+					<h4><strong>Example:</strong> A Commerce Site! 📦💰</h4>
+					<small>Buy <em>and</em> sell new and used goods</small>
+				</section>
+				<section>
+					<div>Commerce site assumptions</div>
+					<br>
+					<ul>
+						<li>US-only</li>
+						<li>New <em>and</em> used items</li>
+						<li>Peer to Peer, Business to Peer</li>
+					</ul>
+				</section>
+				<section>
+					<div>Consider US States</div>
+					<small>A good example of static data</small>
+				</section>
+				<section>
+					<div>Think of US States and all <br> of the places you'd need them</div>
+					<br>
+					<ul>
+						<li>Profile</li>
+						<li>Shipping Options</li>
+						<li>Searching</li>
+						<li>Warehouses</li>
+						<li>etc.</li>
+					</ul>
+				</section>
+				<section>How will we get this data where we need it?</section>
+				<section>
+					<div>Without state management, some options are:</div>
+					<br>
+					<ul>
+						<li>Network calls to backend</li>
+						<li>Copy-and-paste values where needed</li>
+						TODO PICTURE, MAYBE BREAK OUT TO 2 SLIDES
+					</ul>
+				</section>
+				<section>
+					<div>State Management!</div>
+					<div>Set up a "store" and load it up with your needed info.</div>
+					<div>Now, all of the places that rely on that data can just feed from that store.</div>
+					TODO PICTURE
+				</section>
+				<section>
+					<div><em>"But what if I just... store it in a JSON file or something?</em></div>
+					<div><em>I dunno. I'm not convinced."</em></div>
+					<img src="img/idk.jpg" alt="">
+				</section>
+				<section>
+					I have two arguments ✌️
+				</section>
+				<section>
+					<div>1. Most Data Store integrations are tighter.</div>
+					<img src="img/muh_json_file.jpg" alt="">
+				</section>
+
+				<!-- Reason 2: Reactive data -->
+				<section>
+					<h3>2. Reactive Data</h3>
+				</section>
+				<section>
+					<div>How many of you like spas?</div>
+					<img src="img/cozy.jpg" alt="">
+				</section>
+				<section>
+					<div>How many of you like <em>SPA</em>s?</div>
+					<img class="plain-image" src="img/spas.png" alt="">
+				</section>
+				<section>
+					<div>Passing around data can suck sometimes.</div>
+					<small>props, event busses, etc.</small>
+				</section>
+				<section>
+					<div>props</div>
+					<img src="img/graph_theory.png" alt="">
+				</section>
+				<section>
+					<div>global busses 🚌</div>
+					<br>
+					<div>Let's say you have an app with multiple components, <br> and multiple components share some set of data</div>
+					<img class="plain-image" src="img/app.png" alt="">
+				</section>
+				<section>
+					<div>We won't worry about <em>how</em> the data got in all those places, just that it's there.</div>
+					<div>And it needs to change.</div>
+				</section>
+				<section>
+					<div>Let's say one of the components can <em>change</em> this data.</div>
+					<div>What happens to the data everywhere else?</div>
+					<img class="plain-image" src="img/app.png" alt="">
+				</section>
+				<section>
+					<h1>🌎 🚌</h1>
+				</section>
+				<section>
+					<div style="text-align: left;"><strong>Component that mutates:</strong></div>
+					<ol>
+						<li>When data changes, emit a global event with new data</li>
+					</ol>
+					<div><br></div>
+					<div style="text-align: left;"><strong>Other components reliant on data:</strong></div>
+					<ol>
+						<li>When event received, replace old data with new data</li>
+					</ol>
+				</section>
+				<section>
+					<h1>🔧🤠</h1>
+				</section>
+				<section>
+					<div>A bit WET... <br> The code to receive and react to event is a bit redundant</div>
+					<br>
+					<div>Mitigate with a mixin?</div>
+				</section>
+				<section>
+					<div><em>"But what about..."</em></div>
+					<br>
+					<img src="img/jquery.png" alt="" style="height: auto;">
+					<img src="img/zepto.png" alt="" style="height: 10vh; background: white; margin-left: 50px;">
+				</section>
+				<section>
+					<div>Only the place where code needs to be mutated would DOM manipulation logic</div>
+					<img class="plain-image" src="img/app.png" alt="">
+				</section>
+				<section>
+					<h1>🤢</h1>
+				</section>
+				<section>
+					<div>What if this data could be changed <em>in multiple places</em>?</div>
+					<small>Suddenly, both solutions fall short.</small>
+					<img class="plain-image" src="img/app.png" alt="">
+				</section>
+				<section>
+					<div style="text-align: left;"><strong>Components (plural) that mutate:</strong></div>
+					<ol>
+						<li>When data changes, emit a global event with new data</li>
+						<li>When event received, replace old data with new data</li>
+					</ol>
+					<div><br></div>
+					<div style="text-align: left;"><strong>Other components reliant on data:</strong></div>
+					<ol>
+						<li>When event received, replace old data with new data</li>
+					</ol>
+				</section>
+				<section>
+					<img src="img/tired_mechanic.jpg" alt="">
+				</section>
+				<section>
+					<img src="img/bad_smell.jpeg" alt="">
+				</section>
+				<section>
+					<img src="img/shitty_car.jpg" alt="">
+				</section>
+				<section>
+					<img src="img/model_3.jpg" alt="">
+				</section>
+
+				<!-- Closing -->
+				<section>
+					<div>When should I use state management?</div>
+					<br>
+					<ol>
+						<li>Share data between components in an easier way</li>
+							<li>If your data needs to "jump" up or down the component tree by more than one hop</li>
+						<li>Persist data outside the lifetime of a component</li>
+						<li>Clean and powerful way to maintain state</li>
+						</ol>
+				</section>
+				<section>
+					<h2>Thanks! 😃</h2>
+					<div>Questions?</div>
+				</section>
 			</div>
 		</div>
 
